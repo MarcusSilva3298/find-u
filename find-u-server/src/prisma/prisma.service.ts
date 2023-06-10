@@ -19,7 +19,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   }
 
   async clear() {
-    await this.$transaction([this.user.deleteMany()]).catch((err) => {
+    await this.$transaction([this.movie.deleteMany()]).catch((err) => {
       throw new InternalServerErrorException(err);
     });
   }
