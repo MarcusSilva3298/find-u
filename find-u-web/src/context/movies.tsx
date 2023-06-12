@@ -1,7 +1,7 @@
 "use client"
 
 import { IMoviesDTO } from "@/dtos/IMoviesDTO"
-import { mainApi } from "@/services/api"
+import { mainApi, moviesApi } from "@/services/api"
 import {
   ReactNode,
   createContext,
@@ -18,6 +18,7 @@ interface MoviesContextData {
   loadingList: boolean
 
   getMovies: () => void
+  findMoviesApi: () => void
   filterMovies: (filterString: string, filters: ICheckboxes) => void
 }
 
@@ -76,9 +77,26 @@ export function MoviesProvider({ children }: ContextType) {
     []
   )
 
+  const findMoviesApi = useCallback(async () => {
+    await moviesApi
+      .get("/titles/search/title/Avengers", {
+        params: {
+          exact: "false",
+          titleType: "movie"
+        }
+      })
+      .then(({ data }) => {
+        console.log("Server response", data)
+        console.log("One result", data.results[0])
+      })
+      .catch((err) => console.log(err))
+
+    console.log("Finalizou")
+  }, [])
+
   return (
     <MoviesContext.Provider
-      value={{ getMovies, movies, loadingList, filterMovies }}
+      value={{ getMovies, movies, loadingList, filterMovies, findMoviesApi }}
     >
       {children}
     </MoviesContext.Provider>
