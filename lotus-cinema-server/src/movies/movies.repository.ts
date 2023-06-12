@@ -46,7 +46,7 @@ export class MoviesRepository {
     }
 
     return await this.prisma.movie.findMany({
-      orderBy: { created_at: 'asc' },
+      orderBy: { created_at: 'desc' },
       where: filtros.length > 0 ? { OR: filtros } : {},
     });
   }
