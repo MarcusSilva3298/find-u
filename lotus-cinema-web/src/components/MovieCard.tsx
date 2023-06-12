@@ -7,13 +7,11 @@ interface movieCardProps {
 }
 
 export default function MovieCard({ movie }: movieCardProps) {
-  const img_url = "https://i.ytimg.com/vi/hf_lCA-T99c/movieposter_en.jpg"
-
   return (
     <div className="flex flex-col p-2 bg-[#1C1C1C] text-white-f5 rounded">
       <div className="flex flex-row max-h-[244px] max-w-[657px] justify-center">
         <Image
-          src={img_url}
+          src={movie.image_url}
           alt="Image"
           width={165}
           height={244}
@@ -27,7 +25,7 @@ export default function MovieCard({ movie }: movieCardProps) {
 
               <div className="flex flex-row space-x-2">
                 <p>{movie.year_of_release}</p>
-                <p>NULL</p>
+                <p>{movie.pg}</p>
                 <p>{movie.duration}</p>
               </div>
 
@@ -40,7 +38,7 @@ export default function MovieCard({ movie }: movieCardProps) {
             </div>
           </div>
 
-          <p>{movie.synopsis}</p>
+          <p className="overflow-hidden overflow-ellipsis">{movie.synopsis}</p>
         </div>
       </div>
     </div>

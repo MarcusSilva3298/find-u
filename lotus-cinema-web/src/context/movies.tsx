@@ -15,6 +15,8 @@ import { ICheckboxes } from "../components/SideContentMenu/components/Filter"
 
 interface MoviesContextData {
   movies: IMoviesDTO[]
+
+  loadingMDB: boolean
   loadingList: boolean
 
   getMovies: () => void
@@ -31,6 +33,7 @@ const MoviesContext = createContext<MoviesContextData>({} as MoviesContextData)
 
 export function MoviesProvider({ children }: ContextType) {
   const [loadingList, setLoadingList] = useState<boolean>(true)
+  const [loadingMDB, setLoadingMDB] = useState<boolean>(false)
   const [movies, setMovies] = useState<IMoviesDTO[]>([])
 
   const getMovies = useCallback(async () => {
@@ -79,6 +82,8 @@ export function MoviesProvider({ children }: ContextType) {
   )
 
   const findMoviesApi = useCallback(async (title: string) => {
+    setLoadingMDB(true)
+
     let results: any[] = []
 
     await moviesApi
@@ -89,34 +94,17 @@ export function MoviesProvider({ children }: ContextType) {
         }
       })
       .then(({ data }) => {
-        console.log(data.results[0])
-
-        data.results.map((result: any, index: number) => {
-          console.log(`Result ${index}:`, result)
-
+        data.results.map((result: any) => {
           results.push({
             title: result.titleText.text,
             year_of_release: result.releaseYear.year,
             image_url: result.primaryImage.url
           })
-
-          results.push({
-            title: result.titleText.text,
-            image_url: result.primaryImage.url,
-            year_of_release: result.releaseYear.year
-          })
-
-          results.push({
-            title: result.titleText.text,
-            image_url: result.primaryImage.url,
-            year_of_release: result.releaseYear.year
-          })
         })
-
-        console.log(results[0])
       })
       .catch((err) => console.log(err))
 
+    setLoadingMDB(false)
     return results
   }, [])
 
@@ -128,7 +116,9 @@ export function MoviesProvider({ children }: ContextType) {
         rating: data.rating,
         duration: data.duration,
         synopsis: data.synopsis,
-        year_of_release: data.year_of_release
+        year_of_release: data.year_of_release,
+        image_url: data.image_url,
+        pg: data.pg
       })
       .then(({ data }) => console.log(data))
       .catch((err) => console.log(err))
@@ -137,6 +127,7 @@ export function MoviesProvider({ children }: ContextType) {
   return (
     <MoviesContext.Provider
       value={{
+        loadingMDB,
         getMovies,
         movies,
         loadingList,

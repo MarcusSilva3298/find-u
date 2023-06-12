@@ -21,7 +21,7 @@ export default function SideContentMenu() {
 
   return (
     <>
-      <div className="sm:md:hidden lg:flex flex-col h-fit px-4 py-6 bg-[#1C1C1C] text-white rounded gap-y-2.5 w-[400px]">
+      <div className="hidden 2xl:flex flex-col h-fit px-4 py-6 bg-[#1C1C1C] text-white rounded gap-y-2.5 w-[400px]">
         <Filter />
 
         <div className="flex flex-col items-center border-b border-[#414141] pb-2 gap-y-2">
@@ -52,7 +52,7 @@ export default function SideContentMenu() {
         </div>
       </div>
 
-      <div className="lg:hidden sm:md:flex flex-col w-fit h-fit px px-4 py-6 bg-[#1C1C1C] text-white rounded gap-y-2.5">
+      <div className="2xl:hidden flex flex-col w-fit h-fit px px-4 py-6 bg-[#1C1C1C] text-white rounded gap-y-2.5">
         <div className="flex flex-row w-full">
           <Filter />
         </div>

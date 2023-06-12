@@ -11,7 +11,7 @@ export default function MoviesList({ movies }: movieListProps) {
   const { loadingList } = useMovies()
 
   return (
-    <div className="flex flex-col gap-y-2.5 pr-2">
+    <div className="flex flex-col gap-y-2.5">
       {loadingList ? (
         <Loading />
       ) : (
