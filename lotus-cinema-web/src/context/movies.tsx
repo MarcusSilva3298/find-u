@@ -18,8 +18,9 @@ interface MoviesContextData {
   loadingList: boolean
 
   getMovies: () => void
-  findMoviesApi: () => void
+  findMoviesApi: (title: string) => any
   filterMovies: (filterString: string, filters: ICheckboxes) => void
+  addMovie: any
 }
 
 interface ContextType {
@@ -77,26 +78,72 @@ export function MoviesProvider({ children }: ContextType) {
     []
   )
 
-  const findMoviesApi = useCallback(async () => {
+  const findMoviesApi = useCallback(async (title: string) => {
+    let results: any[] = []
+
     await moviesApi
-      .get("/titles/search/title/Avengers", {
+      .get<any>(`/titles/search/title/${title}`, {
         params: {
           exact: "false",
           titleType: "movie"
         }
       })
       .then(({ data }) => {
-        console.log("Server response", data)
-        console.log("One result", data.results[0])
+        console.log(data.results[0])
+
+        data.results.map((result: any, index: number) => {
+          console.log(`Result ${index}:`, result)
+
+          results.push({
+            title: result.titleText.text,
+            year_of_release: result.releaseYear.year,
+            image_url: result.primaryImage.url
+          })
+
+          results.push({
+            title: result.titleText.text,
+            image_url: result.primaryImage.url,
+            year_of_release: result.releaseYear.year
+          })
+
+          results.push({
+            title: result.titleText.text,
+            image_url: result.primaryImage.url,
+            year_of_release: result.releaseYear.year
+          })
+        })
+
+        console.log(results[0])
       })
       .catch((err) => console.log(err))
 
-    console.log("Finalizou")
+    return results
+  }, [])
+
+  const addMovie = useCallback(async (data: any) => {
+    await mainApi
+      .post("/movies", {
+        title: data.title,
+        genre: data.genre,
+        rating: data.rating,
+        duration: data.duration,
+        synopsis: data.synopsis,
+        year_of_release: data.year_of_release
+      })
+      .then(({ data }) => console.log(data))
+      .catch((err) => console.log(err))
   }, [])
 
   return (
     <MoviesContext.Provider
-      value={{ getMovies, movies, loadingList, filterMovies, findMoviesApi }}
+      value={{
+        getMovies,
+        movies,
+        loadingList,
+        filterMovies,
+        findMoviesApi,
+        addMovie
+      }}
     >
       {children}
     </MoviesContext.Provider>
