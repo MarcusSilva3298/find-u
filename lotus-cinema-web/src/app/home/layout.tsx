@@ -16,11 +16,11 @@ export default function HomeLayout({ children }: any) {
         <div className="flex fixed top-14 left-5 p-2 bg-[#1C1C1C] rounded hover:bg-[#2e2e2e]">
           <AiFillInfoCircle className="text-white-f5 text-xl hover:text-[#fcfafa]" />
         </div>
-        <div className="flex flex-col fixed top-20 right-[9rem]">
+        <div className="flex flex-col fixed lg:top-20 lg:right-[9rem] sm:md:top-16 sm:md:right-[6rem]">
           <SideContentMenu />
         </div>
       </>
-      <div className="mt-10 h-[calc(100vh-2.5rem)] bg-[#3a3a3a] overflow-y-auto">
+      <div className="mt-10 lg:pt-0 sm:md:pt-40 h-[calc(100vh-2.5rem)] bg-[#3a3a3a] overflow-y-auto">
         {children}
       </div>
     </>

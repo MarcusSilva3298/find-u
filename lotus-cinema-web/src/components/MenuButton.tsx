@@ -16,7 +16,7 @@ export default function MenuButton(props: menuButtonProps) {
   function buttonStyle() {
     let style =
       special +
-      " flex flex-row py-2 rounded items-center justify-center gap-x-3 h-full w-full cursor-pointer transition ease hover:scale-95 active:scale-90 select-none "
+      " flex flex-row py-2 px-2 rounded items-center justify-center gap-x-3 h-full w-full cursor-pointer transition ease hover:scale-95 active:scale-90 select-none "
 
     switch (type) {
       case "active":

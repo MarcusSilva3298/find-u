@@ -96,9 +96,9 @@ export default function Filter() {
   }, [advancedFilter])
 
   return (
-    <div className="flex flex-col border-b border-[#414141] gap-y-2 pb-2">
-      <div className="flex flex-row gap-x-2">
-        <form className="relative" onSubmit={handleFilterMovies}>
+    <div className="flex flex-col w-full border-b border-[#414141] gap-y-2 pb-2">
+      <div className="flex flex-row w-full gap-x-2">
+        <form className="relative w-full" onSubmit={handleFilterMovies}>
           <input
             type="text"
             placeholder="Search"
