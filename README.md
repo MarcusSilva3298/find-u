@@ -1,2 +1,2 @@
-# find-u
-FindU App mono repo
+# Lotus Cinema
+Lotus Cinema App mono repo
