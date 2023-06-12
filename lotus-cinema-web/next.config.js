@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "i.ytimg.com",
         port: "",
         pathname: "/vi/**"
+      },
+      {
+        protocol: "https",
+        hostname: "m.media-amazon.com",
+        pathname: "/images/M/**"
       }
     ]
   }
