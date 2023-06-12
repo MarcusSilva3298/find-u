@@ -5,16 +5,21 @@ export class Movie {
 
   title: string;
 
-  genre?: string;
-  rating?: string;
-  duration?: string;
-  synopsis?: string;
-  year_of_release?: string;
+  genre: string;
+  rating: string;
+  duration: string;
+  synopsis: string;
+  year_of_release: string;
+  image_url: string;
+  pg: string;
 
-  created_at?: Date;
-  updated_at?: Date;
+  created_at: Date;
+  updated_at: Date;
 
-  constructor(props: Omit<Movie, 'id'>, id?: string) {
+  constructor(
+    props: Omit<Movie, 'id' | 'created_at' | 'updated_at'>,
+    id?: string,
+  ) {
     Object.assign(this, { props, id: id ? id : v4() });
   }
 }

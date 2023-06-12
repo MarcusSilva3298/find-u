@@ -6,17 +6,30 @@ export abstract class CreateMovieDto {
   title: string;
 
   @IsString()
-  genre?: string;
+  @IsNotEmpty()
+  genre: string;
 
   @IsString()
-  rating?: string;
+  @IsNotEmpty()
+  rating: string;
 
   @IsString()
-  duration?: string;
+  @IsNotEmpty()
+  duration: string;
 
   @IsString()
-  synopsis?: string;
+  @IsNotEmpty()
+  synopsis: string;
 
   @IsString()
-  year_of_release?: string;
+  @IsNotEmpty()
+  year_of_release: string;
+
+  @IsString()
+  @IsNotEmpty()
+  image_url: string;
+
+  @IsString()
+  @IsNotEmpty()
+  pg: string;
 }

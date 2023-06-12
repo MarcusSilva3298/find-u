@@ -15,11 +15,13 @@ model Movie {
 
   title String @unique
 
-  genre           String?
-  rating          String?
-  duration        String?
-  synopsis        String?
-  year_of_release String?
+  genre           String
+  rating          String
+  duration        String
+  synopsis        String
+  year_of_release String
+  image_url       String
+  pg              String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

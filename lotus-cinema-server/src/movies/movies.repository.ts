@@ -3,6 +3,7 @@ import { v4 } from 'uuid';
 import { PrismaService } from '../prisma/prisma.service';
 import { Movie } from './entities/movie.entity';
 import { ListMoviesDto } from './dto/list-movies.dto';
+import { CreateMovieDto } from './dto/create-movie.dto';
 
 @Injectable()
 export class MoviesRepository {
@@ -15,7 +16,9 @@ export class MoviesRepository {
     synopsis,
     title,
     year_of_release,
-  }: any): Promise<Movie> {
+    image_url,
+    pg,
+  }: CreateMovieDto): Promise<Movie> {
     return await this.prisma.movie.create({
       data: {
         id: v4(),
@@ -25,6 +28,8 @@ export class MoviesRepository {
         rating,
         synopsis,
         year_of_release,
+        image_url,
+        pg,
       },
     });
   }
