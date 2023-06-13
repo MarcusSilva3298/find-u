@@ -11,7 +11,7 @@ export default function HomeLayout({ children }: any) {
             <GiLotus className="text-2xl text-white-f5" />
             <p>Lotus Cinema</p>
           </div>
-          <p>Entrar e Perfil</p>
+          {/* <p>Entrar e Perfil</p> */}
         </div>
         {/* <div className="flex fixed lg:top-14 sm:md:top left-5 p-2 bg-[#1C1C1C] rounded hover:bg-[#2e2e2e]">
           <AiFillInfoCircle className="text-white-f5 text-xl hover:text-[#fcfafa]" />
